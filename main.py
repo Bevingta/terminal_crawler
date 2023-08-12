@@ -1,5 +1,5 @@
 def print_banner():
-    with open('banner.txt') as banner:
+    with open('graphics/banner.txt') as banner:
         for line in banner:
             print(line, end='')
 
@@ -8,7 +8,6 @@ print_banner()
 
 import random
 import numpy as np
-from walking_description import walking_descriptions
 
 
 # gets the stats of the generated character
@@ -170,7 +169,7 @@ def exploration():
 
 
 enemy_name_list = ["Skeleton"]
-enemy_file_list = ["skeleton_with_sword.txt"]
+enemy_file_list = ["graphics/skeleton_with_sword.txt"]
 
 
 def generate_enemy():
@@ -182,7 +181,7 @@ def generate_enemy():
 
 
 def print_banner():
-    with open('banner.txt') as banner:
+    with open('graphics/banner.txt') as banner:
         for line in banner:
             print(line, end='')
 
