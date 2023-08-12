@@ -1,0 +1,32 @@
+TTTTTTTTTTTTTTTTTTTTTTT                                                              iiii                                     lllllll
+T:::::::::::::::::::::T                                                             i::::i                                    l:::::l
+T:::::::::::::::::::::T                                                              iiii                                     l:::::l
+T:::::TT:::::::TT:::::T                                                                                                       l:::::l
+TTTTTT  T:::::T  TTTTTTeeeeeeeeeeee    rrrrr   rrrrrrrrr      mmmmmmm    mmmmmmm   iiiiiiinnnn  nnnnnnnn      aaaaaaaaaaaaa    l::::l
+        T:::::T      ee::::::::::::ee  r::::rrr:::::::::r   mm:::::::m  m:::::::mm i:::::in:::nn::::::::nn    a::::::::::::a   l::::l
+        T:::::T     e::::::eeeee:::::eer:::::::::::::::::r m::::::::::mm::::::::::m i::::in::::::::::::::nn   aaaaaaaaa:::::a  l::::l
+        T:::::T    e::::::e     e:::::err::::::rrrrr::::::rm::::::::::::::::::::::m i::::inn:::::::::::::::n           a::::a  l::::l
+        T:::::T    e:::::::eeeee::::::e r:::::r     r:::::rm:::::mmm::::::mmm:::::m i::::i  n:::::nnnn:::::n    aaaaaaa:::::a  l::::l
+        T:::::T    e:::::::::::::::::e  r:::::r     rrrrrrrm::::m   m::::m   m::::m i::::i  n::::n    n::::n  aa::::::::::::a  l::::l
+        T:::::T    e::::::eeeeeeeeeee   r:::::r            m::::m   m::::m   m::::m i::::i  n::::n    n::::n a::::aaaa::::::a  l::::l
+        T:::::T    e:::::::e            r:::::r            m::::m   m::::m   m::::m i::::i  n::::n    n::::na::::a    a:::::a  l::::l
+      TT:::::::TT  e::::::::e           r:::::r            m::::m   m::::m   m::::mi::::::i n::::n    n::::na::::a    a:::::a l::::::l
+      T:::::::::T   e::::::::eeeeeeee   r:::::r            m::::m   m::::m   m::::mi::::::i n::::n    n::::na:::::aaaa::::::a l::::::l
+      T:::::::::T    ee:::::::::::::e   r:::::r            m::::m   m::::m   m::::mi::::::i n::::n    n::::n a::::::::::aa:::al::::::l
+      TTTTTTTTTTT      eeeeeeeeeeeeee   rrrrrrr            mmmmmm   mmmmmm   mmmmmmiiiiiiii nnnnnn    nnnnnn  aaaaaaaaaa  aaaallllllll
+                                      CCCCCCCCCCCCC                                                                         lllllll
+                                   CCC::::::::::::C                                                                         l:::::l
+                                 CC:::::::::::::::C                                                                         l:::::l
+                                C:::::CCCCCCCC::::C                                                                         l:::::l
+                               C:::::C       CCCCCCrrrrr   rrrrrrrrr   aaaaaaaaaaaaawwwwwww           wwwww           wwwwwwwl::::l     eeeeeeeeeeee    rrrrr   rrrrrrrrr
+                              C:::::C              r::::rrr:::::::::r  a::::::::::::aw:::::w         w:::::w         w:::::w l::::l   ee::::::::::::ee  r::::rrr:::::::::r
+                              C:::::C              r:::::::::::::::::r aaaaaaaaa:::::aw:::::w       w:::::::w       w:::::w  l::::l  e::::::eeeee:::::eer:::::::::::::::::r
+                              C:::::C              rr::::::rrrrr::::::r         a::::a w:::::w     w:::::::::w     w:::::w   l::::l e::::::e     e:::::err::::::rrrrr::::::r
+                              C:::::C               r:::::r     r:::::r  aaaaaaa:::::a  w:::::w   w:::::w:::::w   w:::::w    l::::l e:::::::eeeee::::::e r:::::r     r:::::r
+                              C:::::C               r:::::r     rrrrrrraa::::::::::::a   w:::::w w:::::w w:::::w w:::::w     l::::l e:::::::::::::::::e  r:::::r     rrrrrrr
+                              C:::::C               r:::::r           a::::aaaa::::::a    w:::::w:::::w   w:::::w:::::w      l::::l e::::::eeeeeeeeeee   r:::::r
+                               C:::::C       CCCCCC r:::::r          a::::a    a:::::a     w:::::::::w     w:::::::::w       l::::l e:::::::e            r:::::r
+                                C:::::CCCCCCCC::::C r:::::r          a::::a    a:::::a      w:::::::w       w:::::::w       l::::::le::::::::e           r:::::r
+                                 CC:::::::::::::::C r:::::r          a:::::aaaa::::::a       w:::::w         w:::::w        l::::::l e::::::::eeeeeeee   r:::::r
+                                   CCC::::::::::::C r:::::r           a::::::::::aa:::a       w:::w           w:::w         l::::::l  ee:::::::::::::e   r:::::r
+                                      CCCCCCCCCCCCC rrrrrrr            aaaaaaaaaa  aaaa        www             www          llllllll    eeeeeeeeeeeeee   rrrrrrr
