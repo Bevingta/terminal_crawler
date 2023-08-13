@@ -5,6 +5,20 @@ import sys
 import os
 
 past_cords = [(12,50)]
+enemy_name_list = ["Skeleton"]
+enemy_file_list = ["graphics/skeleton_with_sword.txt"]
+def spawn_enemy(num):
+  if num == 5:
+    rand_index = random.randint(0,len(enemy_name_list))
+    enemy = enemy_name_list[rand_index]
+    enemy_file = enemy_file_list[rand_index]
+    with open(enemy_file) as enemy_drawing:
+        for line in enemy_drawing:
+            print(line,end="")
+    return enemy
+
+def gen_stats(enemy):
+    None
 
 def print_map():
     for line in map_array:
@@ -15,16 +29,15 @@ def print_map():
                 print(" ", end="")
             elif value == 2:
                 print("o", end="")
-            elif value == 3:
-                print("#", end="")
             elif value == 4:
                 print(" ", end="")
+            elif value == 5:
+                print("*", end="")
         print("")
 
 def gen_random(chance):
-    wall_chance = chance
     random_num = random.random()
-    if random_num < wall_chance:
+    if random_num < chance:
         return True
     else:
         return False
@@ -35,7 +48,7 @@ def check_zero(array, num):
     else:
         return array
 
-def move_up(player_y, player_x,top_percent,left_percent,right_percent):
+def move_up(player_y, player_x,top_percent,left_percent,right_percent, enemy_percent):
     if map_array[player_y-1][player_x] == 0 or map_array[player_y-1][player_x] == 4:
         map_array[player_y][player_x] = 0
         player_y -= 2
@@ -43,29 +56,39 @@ def move_up(player_y, player_x,top_percent,left_percent,right_percent):
             past_cords.append((player_y, player_x))
             #top
             if not gen_random(top_percent):
-                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x],1)
-                map_array[player_y - 1][player_x - 1] = check_zero(map_array[player_y - 1][player_x - 1],1)
-                map_array[player_y - 1][player_x + 1] = check_zero(map_array[player_y - 1][player_x + 1],1)
+                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x], 1)
+                map_array[player_y - 1][player_x - 1] = check_zero(map_array[player_y - 1][player_x - 1], 1)
+                map_array[player_y - 1][player_x + 1] = check_zero(map_array[player_y - 1][player_x + 1], 1)
             else:
-                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x],4)
-                map_array[player_y - 1][player_x - 1] = check_zero(map_array[player_y - 1][player_x - 1],3)
-                map_array[player_y - 1][player_x + 1] = check_zero(map_array[player_y - 1][player_x + 1],3)
+                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x], 4)
+                map_array[player_y - 1][player_x - 1] = check_zero(map_array[player_y - 1][player_x - 1], 1)
+                map_array[player_y - 1][player_x + 1] = check_zero(map_array[player_y - 1][player_x + 1], 1)
+                if gen_random(enemy_percent):
+                    map_array[player_y - 1][player_x] = 5
+
             #left
             if not gen_random(left_percent):
-                map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1],3)
+                map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1], 1)
             else:
-                map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1],4)
+                map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1], 4)
+                if gen_random(enemy_percent):
+                    map_array[player_y][player_x - 1] = 5
+
             #right
             if not gen_random(right_percent):
-                map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1],3)
+                map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1], 1)
             else:
-                map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1],4)
+                map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1], 4)
+                if gen_random(enemy_percent):
+                    map_array[player_y][player_x + 1] = 5
 
         map_array[player_y][player_x] = 2
+    elif map_array[player_y - 1][player_x] == 5:
+        print("Enemy Encountered")
     return player_y
 
 
-def move_down(player_y, player_x,down_percent,left_percent,right_percent):
+def move_down(player_y, player_x,down_percent,left_percent,right_percent, enemy_percent):
     if map_array[player_y + 1][player_x] == 0 or map_array[player_y + 1][player_x] == 4:
         map_array[player_y][player_x] = 0
         player_y += 2
@@ -73,29 +96,39 @@ def move_down(player_y, player_x,down_percent,left_percent,right_percent):
             past_cords.append((player_y, player_x))
             #top
             if not gen_random(down_percent):
-                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x],1)
-                map_array[player_y + 1][player_x - 1] = check_zero(map_array[player_y + 1][player_x - 1],1)
-                map_array[player_y + 1][player_x + 1] = check_zero(map_array[player_y + 1][player_x + 1],1)
+                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x], 1)
+                map_array[player_y + 1][player_x - 1] = check_zero(map_array[player_y + 1][player_x - 1], 1)
+                map_array[player_y + 1][player_x + 1] = check_zero(map_array[player_y + 1][player_x + 1], 1)
             else:
-                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x],4)
-                map_array[player_y + 1][player_x - 1] = check_zero(map_array[player_y + 1][player_x - 1],3)
-                map_array[player_y + 1][player_x + 1] = check_zero(map_array[player_y + 1][player_x + 1],3)
+                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x], 4)
+                map_array[player_y + 1][player_x - 1] = check_zero(map_array[player_y + 1][player_x - 1], 1)
+                map_array[player_y + 1][player_x + 1] = check_zero(map_array[player_y + 1][player_x + 1], 1)
+                if gen_random(enemy_percent):
+                    map_array[player_y + 1][player_x] = 5
+
             #left
             if not gen_random(left_percent):
-                map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1],3)
+                map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1], 1)
             else:
-                map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1],4)
+                map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1], 4)
+                if gen_random(enemy_percent):
+                    map_array[player_y][player_x - 1] = 5
+
             #right
             if not gen_random(right_percent):
-                map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1],3)
+                map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1], 1)
             else:
-                map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1],4)
+                map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1], 4)
+                if gen_random(enemy_percent):
+                    map_array[player_y][player_x + 1] = 5
 
         map_array[player_y][player_x] = 2
+    elif map_array[player_y + 1][player_x] == 5:
+        print("Enemy Encountered")
     return player_y
 
 
-def move_left(player_y, player_x,top_percent,down_percent,left_percent):
+def move_left(player_y, player_x,top_percent,down_percent,left_percent, enemy_chance):
     if map_array[player_y][player_x - 1] == 0 or map_array[player_y][player_x - 1] == 4:
         map_array[player_y][player_x] = 0
         player_x -= 2
@@ -104,29 +137,37 @@ def move_left(player_y, player_x,top_percent,down_percent,left_percent):
 
             # bottom
             if not gen_random(down_percent):
-                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x],1)
-                map_array[player_y + 1][player_x - 1] = check_zero(map_array[player_y + 1][player_x + 1],1)
+                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x], 1)
+                map_array[player_y + 1][player_x - 1] = check_zero(map_array[player_y + 1][player_x + 1], 1)
             else:
-                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x],4)
-                map_array[player_y + 1][player_x - 1] = check_zero(map_array[player_y + 1][player_x - 1],3)
+                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x], 4)
+                map_array[player_y + 1][player_x - 1] = check_zero(map_array[player_y + 1][player_x - 1], 1)
+                if gen_random(enemy_chance):
+                    map_array[player_y + 1][player_x] = 5
             # top
             if not gen_random(top_percent):
-                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x],1)
-                map_array[player_y - 1][player_x - 1] = check_zero(map_array[player_y - 1][player_x - 1],1)
+                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x], 1)
+                map_array[player_y - 1][player_x - 1] = check_zero(map_array[player_y - 1][player_x - 1], 1)
             else:
-                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x],4)
-                map_array[player_y - 1][player_x - 1] = check_zero(map_array[player_y + 1][player_x - 1],1)
+                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x], 4)
+                map_array[player_y - 1][player_x - 1] = check_zero(map_array[player_y + 1][player_x - 1], 1)
+                if gen_random(enemy_chance):
+                    map_array[player_y - 1][player_x] = 5
             # left
             if not gen_random(left_percent):
-                map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1], 3)
+                map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1], 1)
             else:
                 map_array[player_y][player_x - 1] = check_zero(map_array[player_y][player_x - 1], 4)
+                if gen_random(enemy_chance):
+                    map_array[player_y][player_x - 1] = 5
 
         map_array[player_y][player_x] = 2
+    elif map_array[player_y][player_x - 1] == 5:
+        print("Enemy Encountered")
     return player_x
 
 
-def move_right(player_y, player_x,top_percent, down_percent, right_percent):
+def move_right(player_y, player_x,top_percent, down_percent, right_percent, enemy_percent):
     if map_array[player_y][player_x + 1] == 0 or map_array[player_y][player_x + 1] == 4:
         map_array[player_y][player_x] = 0
         player_x += 2
@@ -134,25 +175,33 @@ def move_right(player_y, player_x,top_percent, down_percent, right_percent):
             past_cords.append((player_y, player_x))
             # bottom
             if not gen_random(down_percent):
-                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x],1)
-                map_array[player_y + 1][player_x + 1] = check_zero(map_array[player_y + 1][player_x + 1],1)
+                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x], 1)
+                map_array[player_y + 1][player_x + 1] = check_zero(map_array[player_y + 1][player_x + 1], 1)
             else:
-                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x],4)
-                map_array[player_y + 1][player_x + 1] = check_zero(map_array[player_y + 1][player_x + 1],3)
+                map_array[player_y + 1][player_x] = check_zero(map_array[player_y + 1][player_x], 4)
+                map_array[player_y + 1][player_x + 1] = check_zero(map_array[player_y + 1][player_x + 1], 1)
+                if gen_random(enemy_percent):
+                    map_array[player_y + 1][player_x] = 5
             # top
             if not gen_random(top_percent):
-                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x],1)
-                map_array[player_y - 1][player_x + 1] = check_zero(map_array[player_y - 1][player_x + 1],1)
+                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x], 1)
+                map_array[player_y - 1][player_x + 1] = check_zero(map_array[player_y - 1][player_x + 1], 1)
             else:
-                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x],4)
-                map_array[player_y - 1][player_x + 1] = check_zero(map_array[player_y - 1][player_x + 1],3)
+                map_array[player_y - 1][player_x] = check_zero(map_array[player_y - 1][player_x], 4)
+                map_array[player_y - 1][player_x + 1] = check_zero(map_array[player_y - 1][player_x + 1], 1)
+                if gen_random(enemy_percent):
+                    map_array[player_y - 1][player_x] = 5
             # right
             if not gen_random(right_percent):
-                map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1], 3)
+                map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1], 1)
             else:
                 map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1], 4)
+                if gen_random(enemy_percent):
+                    map_array[player_y][player_x + 1] = 5
 
         map_array[player_y][player_x] = 2
+    elif map_array[player_y][player_x + 1] == 5:
+        print("Enemy Encountered")
     return player_x
 
 
@@ -167,10 +216,11 @@ def on_key_press(key):
     left_percent = 0.75
     right_percent = 0.75
     down_percent = 0.4
+    enemy_percent = 0.2
     # need to make a clause to check for 1s making a border
     try:
         if key.char == "w":
-            player_y = move_up(player_y, player_x,top_percent,left_percent,right_percent)
+            player_y = move_up(player_y, player_x,top_percent,left_percent,right_percent, enemy_percent)
             if player_y > 0:
                 print_map()
             elif player_y == 0:
@@ -178,11 +228,11 @@ def on_key_press(key):
                 player_y = 2
 
         if key.char == "s":
-            player_y = move_down(player_y, player_x,down_percent,left_percent,right_percent)
+            player_y = move_down(player_y, player_x,down_percent,left_percent,right_percent, enemy_percent)
             print_map()
 
         if key.char == "a":
-            player_x = move_left(player_y, player_x,top_percent,down_percent,right_percent)
+            player_x = move_left(player_y, player_x,top_percent,down_percent,right_percent, enemy_percent)
             if player_x > 0:
                 print_map()
             elif player_x == 0:
@@ -190,7 +240,7 @@ def on_key_press(key):
                 player_x = 2
 
         if key.char == "d":
-            player_x = move_right(player_y, player_x,top_percent,down_percent,left_percent)
+            player_x = move_right(player_y, player_x,top_percent,down_percent,left_percent, enemy_percent)
             print_map()
 
     except AttributeError:
@@ -244,20 +294,25 @@ def surround_with_ring(arr):
     # Right column
     new_arr[:, n - 1] = 1
 
-    new_arr[11][49] = 3
-    new_arr[11][51] = 3
-    new_arr[13][49] = 3
-    new_arr[13][51] = 3
+    new_arr[11][49] = 1
+    new_arr[11][51] = 1
+    new_arr[13][49] = 1
+    new_arr[13][51] = 1
     new_arr[12][50] = 2
 
     return new_arr
 
 
 
+def generate_map():
+    array_size = (25, 100)
+    map_array = np.zeros(array_size)
+    full_map = surround_with_ring(map_array)
+    return full_map
 
-array_size = (25, 100)
-map_array = np.zeros(array_size)
-map_array = surround_with_ring(map_array)
+
+map_array = generate_map()
 print_map()
 map_movement()
+
 
