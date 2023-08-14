@@ -3,22 +3,10 @@ from pynput import keyboard
 import random
 import sys
 import os
+from combat_loop import generate_enemy
 
 past_cords = [(12,50)]
-enemy_name_list = ["Skeleton"]
-enemy_file_list = ["graphics/skeleton_with_sword.txt"]
-def spawn_enemy(num):
-  if num == 5:
-    rand_index = random.randint(0,len(enemy_name_list))
-    enemy = enemy_name_list[rand_index]
-    enemy_file = enemy_file_list[rand_index]
-    with open(enemy_file) as enemy_drawing:
-        for line in enemy_drawing:
-            print(line,end="")
-    return enemy
 
-def gen_stats(enemy):
-    None
 
 def print_map():
     for line in map_array:
