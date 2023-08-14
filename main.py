@@ -1,5 +1,6 @@
 from map_movement import generate_map, print_map, map_movement
 
+
 def print_banner():
     with open('graphics/banner.txt') as banner:
         for line in banner:

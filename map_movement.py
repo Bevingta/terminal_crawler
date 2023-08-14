@@ -3,7 +3,6 @@ from pynput import keyboard
 import random
 import sys
 import os
-from combat_loop import generate_enemy
 
 past_cords = [(12,50)]
 
@@ -112,7 +111,7 @@ def move_down(player_y, player_x,down_percent,left_percent,right_percent, enemy_
 
         map_array[player_y][player_x] = 2
     elif map_array[player_y + 1][player_x] == 5:
-        print("Enemy Encountered")
+        print("Enemy")
     return player_y
 
 
