@@ -3,8 +3,22 @@ from pynput import keyboard
 import random
 import sys
 import os
+import time
+from combat_loop import combat, generate_enemy, generate_player
 
-past_cords = [(12,50)]
+past_cords = [(12, 50)]
+
+
+def print_banner():
+    with open('graphics/banner.txt') as banner:
+        print("")
+        print("")
+        for line in banner:
+            print(line, end='')
+            time.sleep(0.1)
+        print("")
+        print("")
+        print("")
 
 
 def print_map():
@@ -28,6 +42,14 @@ def gen_random(chance):
         return True
     else:
         return False
+
+def print_instructions():
+    print("w = Move Up      a = Move Left")
+    print("s = Move Down    d = Move Right")
+    print("")
+    print("# = Wall")
+    print("* = Enemy")
+    print("")
 
 def check_zero(array, num):
     if array == 0:
@@ -71,7 +93,8 @@ def move_up(player_y, player_x,top_percent,left_percent,right_percent, enemy_per
 
         map_array[player_y][player_x] = 2
     elif map_array[player_y - 1][player_x] == 5:
-        print("Enemy Encountered")
+        enemy = generate_enemy(map_array[player_y - 1][player_x])
+        combat(player,enemy)
     return player_y
 
 
@@ -111,7 +134,8 @@ def move_down(player_y, player_x,down_percent,left_percent,right_percent, enemy_
 
         map_array[player_y][player_x] = 2
     elif map_array[player_y + 1][player_x] == 5:
-        print("Enemy")
+        enemy = generate_enemy(map_array[player_y + 1][player_x])
+        combat(player,enemy)
     return player_y
 
 
@@ -150,7 +174,8 @@ def move_left(player_y, player_x,top_percent,down_percent,left_percent, enemy_ch
 
         map_array[player_y][player_x] = 2
     elif map_array[player_y][player_x - 1] == 5:
-        print("Enemy Encountered")
+        enemy = generate_enemy(map_array[player_y][player_x - 1])
+        combat(player,enemy)
     return player_x
 
 
@@ -188,7 +213,8 @@ def move_right(player_y, player_x,top_percent, down_percent, right_percent, enem
 
         map_array[player_y][player_x] = 2
     elif map_array[player_y][player_x + 1] == 5:
-        print("Enemy Encountered")
+        enemy = generate_enemy(map_array[player_y][player_x + 1])
+        combat(player,enemy)
     return player_x
 
 
@@ -298,7 +324,10 @@ def generate_map():
     return full_map
 
 
+print_banner()
+player = generate_player()
 map_array = generate_map()
+print_instructions()
 print_map()
 map_movement()
 

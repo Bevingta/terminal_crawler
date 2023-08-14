@@ -1,4 +1,6 @@
 import random
+import time
+from starting_quest import starting_descriptions
 
 enemy_name_list = ["Skeleton"]
 enemy_file_list = ["graphics/skeleton_with_sword.txt"]
@@ -21,13 +23,23 @@ class Character:
 # prints the current stats of the called character
 def print_stats(character):
     print(f"Max Health: {character.max_health}")
+    time.sleep(0.3)
     print(f"Current Health: {character.current_health}")
+    time.sleep(0.3)
     print(f"Defense: {character.dfence}")
+    time.sleep(0.3)
     print(f"Attack: {character.attack}")
+    time.sleep(0.3)
     print(f"Crit Chance: {character.crit}%")
+    time.sleep(0.3)
     print(f"Dodge Chance: {character.dodge}%")
+    time.sleep(0.3)
     print(f"Freeze Chance: {character.freeze}%")
+    time.sleep(0.3)
     print(f"Burn Chance: {character.burn}%")
+    time.sleep(0.3)
+    print("")
+    print("")
 
 def update_health(receiver, damage):
     receiver.current_health -= damage
@@ -40,7 +52,7 @@ def update_health(receiver, damage):
         print(f"{receiver.name}'s current health: {receiver.current_health}")
 
 
-def display_health():
+def display_health(player, enemy):
     player_tick_value = player.max_health // 10
     enemy_tick_value = enemy.max_health // 10
     player_ticks = ['[', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ']']
@@ -113,7 +125,7 @@ def attack(attacker, receiver):
     return status
 
 
-def calc_in_combat():
+def calc_in_combat(player, enemy):
     if player.current_health <= 0:
         return False
     elif enemy.current_health <= 0:
@@ -122,9 +134,9 @@ def calc_in_combat():
         return True
 
 
-def combat():
+def combat(player, enemy):
     turn = 'player'
-    display_health()
+    display_health(player,enemy)
     in_combat = True
     while in_combat == True:
         if turn == 'player':
@@ -133,14 +145,14 @@ def combat():
                 # make a delay inbetween prints
                 # make an animation?
                 attack(player, enemy)
-                display_health()
-                in_combat = calc_in_combat()  # could make this a function
+                display_health(player,enemy)
+                in_combat = calc_in_combat(player,enemy)  # could make this a function
                 turn = 'enemy'
 
             elif user_choice == 'b':
                 block(player, enemy)  # have to fix the block bc it could not attack sometimes
-                display_health()
-                in_combat = calc_in_combat()
+                display_health(player,enemy)
+                in_combat = calc_in_combat(player,enemy)
                 turn = 'enemy'
 
             elif user_choice == 'f':
@@ -149,11 +161,14 @@ def combat():
         elif turn == 'enemy':
             print("Enemy attacks:")
             attack(enemy, player)
-            display_health()
-            in_combat = calc_in_combat()
+            display_health(player,enemy)
+            in_combat = calc_in_combat(player,enemy)
             turn = 'player'
 
 def generate_player():
+    rand = random.randint(0,len(starting_descriptions))
+    print(starting_descriptions[rand])
+
     player_name = input("Enter your name: ")
     player = Character(player_name)
     player.current_health = 100
@@ -162,7 +177,7 @@ def generate_player():
     print_stats(player)
     return player
 
-def generate_enemy():
+def generate_enemy(num):
     def spawn_enemy(num):
         if num == 5:
             rand_index = random.randint(0, len(enemy_name_list))
@@ -173,9 +188,3 @@ def generate_enemy():
                     print(line, end="")
             return enemy
 
-player = generate_player()
-enemy = generate_player()
-
-
-
-combat()
