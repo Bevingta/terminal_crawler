@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ca36b2b-0de0-47d3-b796-130ad7cd199f" name="Changes" comment="Randomly generates enemies and able to interact (no combat yet)">
-      <change afterPath="$PROJECT_DIR$/starting_quest.py" afterDir="false" />
+    <list default="true" id="4ca36b2b-0de0-47d3-b796-130ad7cd199f" name="Changes" comment="combat not triggering">
+      <change afterPath="$PROJECT_DIR$/graphics/game_over.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combat_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat_loop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/banner.txt" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/banner.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map_movement.py" beforeDir="false" afterPath="$PROJECT_DIR$/map_movement.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692044064066</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="combat not triggering">
+      <created>1692047547430</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692047547430</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,6 +195,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Randomly generates enemies and able to interact (no combat yet)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Randomly generates enemies and able to interact (no combat yet)" />
+    <MESSAGE value="combat not triggering" />
+    <option name="LAST_COMMIT_MESSAGE" value="combat not triggering" />
   </component>
 </project>

@@ -1,10 +1,25 @@
+import sys
 import random
 import time
 from starting_quest import starting_descriptions
 
+enemies_killed = 0
+xp_gained = 0
+final_score = 0
+
 enemy_name_list = ["Skeleton"]
 enemy_file_list = ["graphics/skeleton_with_sword.txt"]
 
+def print_game_over():
+    with open('graphics/game_over.txt') as banner:
+        print("")
+        print("")
+        for line in banner:
+            print(line, end='')
+            time.sleep(0.1)
+        print("")
+        print("")
+        print("")
 
 class Character:
     def __init__(self, name):
@@ -125,9 +140,17 @@ def attack(attacker, receiver):
     return status
 
 
+def end_game():
+    print_game_over()
+    print(f"Enemies Killed: {enemies_killed}")
+    print(f"XP Gained: {xp_gained}")
+    print(f"Final Score: {final_score}")
+    quit()
+
+
 def calc_in_combat(player, enemy):
     if player.current_health <= 0:
-        return False
+        end_game()
     elif enemy.current_health <= 0:
         return False
     else:
@@ -138,7 +161,7 @@ def combat(player, enemy):
     turn = 'player'
     display_health(player,enemy)
     in_combat = True
-    while in_combat == True:
+    while in_combat:
         if turn == 'player':
             user_choice = input("[a] Attack            [b] Block           [f] Flee\nAction: ").lower()
             if user_choice == 'a':
@@ -151,8 +174,8 @@ def combat(player, enemy):
 
             elif user_choice == 'b':
                 block(player, enemy)  # have to fix the block bc it could not attack sometimes
-                display_health(player,enemy)
-                in_combat = calc_in_combat(player,enemy)
+                display_health(player, enemy)
+                in_combat = calc_in_combat(player, enemy)
                 turn = 'enemy'
 
             elif user_choice == 'f':
@@ -161,14 +184,14 @@ def combat(player, enemy):
         elif turn == 'enemy':
             print("Enemy attacks:")
             attack(enemy, player)
-            display_health(player,enemy)
-            in_combat = calc_in_combat(player,enemy)
+            display_health(player, enemy)
+            in_combat = calc_in_combat(player, enemy)
             turn = 'player'
 
 def generate_player():
-    rand = random.randint(0,len(starting_descriptions))
+    rand = random.randint(0, len(starting_descriptions)-1)
     print(starting_descriptions[rand])
-
+    print("")
     player_name = input("Enter your name: ")
     player = Character(player_name)
     player.current_health = 100
@@ -177,14 +200,21 @@ def generate_player():
     print_stats(player)
     return player
 
-def generate_enemy(num):
-    def spawn_enemy(num):
-        if num == 5:
-            rand_index = random.randint(0, len(enemy_name_list))
-            enemy = enemy_name_list[rand_index]
-            enemy_file = enemy_file_list[rand_index]
-            with open(enemy_file) as enemy_drawing:
-                for line in enemy_drawing:
-                    print(line, end="")
-            return enemy
+def generate_enemy(player, num):
+    if num == 5:
+        rand_index = random.randint(0, len(enemy_name_list))
+        enemy = enemy_name_list[rand_index]
+        enemy_file = enemy_file_list[rand_index]
+        print("")
+        print("")
+        with open(enemy_file) as enemy_drawing:
+            for line in enemy_drawing:
+                print(line, end="")
+                time.sleep(0.1)
+        enemy = Character(enemy)
+        #need to add a generate stats in here
+        print(enemy.name)
+        print_stats(enemy)
+        combat(player, enemy)
+        return enemy
 

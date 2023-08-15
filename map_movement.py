@@ -21,20 +21,23 @@ def print_banner():
         print("")
 
 
+
+
 def print_map():
-    for line in map_array:
-        for value in line:
-            if value == 1:
-                print("#", end="")
-            elif value == 0:
-                print(" ", end="")
-            elif value == 2:
-                print("o", end="")
-            elif value == 4:
-                print(" ", end="")
-            elif value == 5:
-                print("*", end="")
-        print("")
+    if player.current_health > 0:
+        for line in map_array:
+            for value in line:
+                if value == 1:
+                    print("#", end="")
+                elif value == 0:
+                    print(" ", end="")
+                elif value == 2:
+                    print("o", end="")
+                elif value == 4:
+                    print(" ", end="")
+                elif value == 5:
+                    print("*", end="")
+            print("")
 
 def gen_random(chance):
     random_num = random.random()
@@ -90,11 +93,12 @@ def move_up(player_y, player_x,top_percent,left_percent,right_percent, enemy_per
                 map_array[player_y][player_x + 1] = check_zero(map_array[player_y][player_x + 1], 4)
                 if gen_random(enemy_percent):
                     map_array[player_y][player_x + 1] = 5
-
         map_array[player_y][player_x] = 2
     elif map_array[player_y - 1][player_x] == 5:
-        enemy = generate_enemy(map_array[player_y - 1][player_x])
-        combat(player,enemy)
+        generate_enemy(player, map_array[player_y - 1][player_x])
+        map_array[player_y - 1][player_x] = 0
+        print_map()
+        map_movement()
     return player_y
 
 
@@ -134,8 +138,10 @@ def move_down(player_y, player_x,down_percent,left_percent,right_percent, enemy_
 
         map_array[player_y][player_x] = 2
     elif map_array[player_y + 1][player_x] == 5:
-        enemy = generate_enemy(map_array[player_y + 1][player_x])
-        combat(player,enemy)
+        generate_enemy(player, map_array[player_y + 1][player_x])
+        map_array[player_y + 1][player_x] = 0
+        print_map()
+        map_movement()
     return player_y
 
 
@@ -174,8 +180,10 @@ def move_left(player_y, player_x,top_percent,down_percent,left_percent, enemy_ch
 
         map_array[player_y][player_x] = 2
     elif map_array[player_y][player_x - 1] == 5:
-        enemy = generate_enemy(map_array[player_y][player_x - 1])
-        combat(player,enemy)
+        generate_enemy(player, map_array[player_y][player_x - 1])
+        map_array[player_y][player_x - 1] = 0
+        print_map()
+        map_movement()
     return player_x
 
 
@@ -213,8 +221,10 @@ def move_right(player_y, player_x,top_percent, down_percent, right_percent, enem
 
         map_array[player_y][player_x] = 2
     elif map_array[player_y][player_x + 1] == 5:
-        enemy = generate_enemy(map_array[player_y][player_x + 1])
-        combat(player,enemy)
+        generate_enemy(player, map_array[player_y][player_x + 1])
+        map_array[player_y][player_x + 1] = 0
+        print_map()
+        map_movement()
     return player_x
 
 
@@ -233,7 +243,7 @@ def on_key_press(key):
     # need to make a clause to check for 1s making a border
     try:
         if key.char == "w":
-            player_y = move_up(player_y, player_x,top_percent,left_percent,right_percent, enemy_percent)
+            player_y = move_up(player_y, player_x, top_percent, left_percent, right_percent, enemy_percent)
             if player_y > 0:
                 print_map()
             elif player_y == 0:
@@ -241,11 +251,11 @@ def on_key_press(key):
                 player_y = 2
 
         if key.char == "s":
-            player_y = move_down(player_y, player_x,down_percent,left_percent,right_percent, enemy_percent)
+            player_y = move_down(player_y, player_x, down_percent, left_percent, right_percent, enemy_percent)
             print_map()
 
         if key.char == "a":
-            player_x = move_left(player_y, player_x,top_percent,down_percent,right_percent, enemy_percent)
+            player_x = move_left(player_y, player_x, top_percent, down_percent, right_percent, enemy_percent)
             if player_x > 0:
                 print_map()
             elif player_x == 0:
