@@ -2,13 +2,14 @@ import sys
 import random
 import time
 from starting_quest import starting_descriptions
+from enemy_lists import enemy_name_list,enemy_file_list
 
-enemies_killed = 0
-xp_gained = 0
-final_score = 0
+enemies_killed = [0]
+xp_gained = [0]
+next_level_xp = [10]
+final_score = [0]
 
-enemy_name_list = ["Skeleton"]
-enemy_file_list = ["graphics/skeleton_with_sword.txt"]
+
 
 def print_game_over():
     with open('graphics/game_over.txt') as banner:
@@ -33,6 +34,8 @@ class Character:
         self.dodge = 0
         self.freeze = 0
         self.burn = 0
+        self.xp_drop = 0
+        self.stamina = 5
         alive = True
 
 # prints the current stats of the called character
@@ -142,16 +145,30 @@ def attack(attacker, receiver):
 
 def end_game():
     print_game_over()
-    print(f"Enemies Killed: {enemies_killed}")
-    print(f"XP Gained: {xp_gained}")
-    print(f"Final Score: {final_score}")
-    quit()
+    print(f"Enemies Killed: {enemies_killed[0]}")
+    print(f"XP Gained: {xp_gained[0]}")
+    print(f"Final Score: {final_score[0]}")
+    sys.exit()
 
+def level_up(player):
+    with open("graphics/level_up.txt") as level_up:
+        for line in level_up:
+            print(line,end="")
+            time.sleep(0.05)
+    player.attack += 5
+    player.max_health += 20
+    player.stamina += 2
+    print("New Stats: ")
+    print_stats(player)
 
 def calc_in_combat(player, enemy):
     if player.current_health <= 0:
         end_game()
     elif enemy.current_health <= 0:
+        enemies_killed[0] = enemies_killed[0] + 1
+        xp_gained[0] = xp_gained[0] + enemy.xp_drop
+        if xp_gained[0] > next_level_xp[0]:
+            level_up(player)
         return False
     else:
         return True
@@ -200,6 +217,12 @@ def generate_player():
     print_stats(player)
     return player
 
+def generate_stats(enemy, player, xp):
+    enemy.attack = random.randint(int((0.75*player.attack)), int((1.25*player.attack)))
+    enemy.xp_drop = xp
+    enemy.max_health = random.randint(int(0.5*player.max_health),int(0.75*player.max_health))
+    enemy.current_health = enemy.max_health
+
 def generate_enemy(player, num):
     if num == 5:
         rand_index = random.randint(0, len(enemy_name_list))
@@ -212,7 +235,7 @@ def generate_enemy(player, num):
                 print(line, end="")
                 time.sleep(0.1)
         enemy = Character(enemy)
-        #need to add a generate stats in here
+        generate_stats(enemy, player, 10)
         print(enemy.name)
         print_stats(enemy)
         combat(player, enemy)

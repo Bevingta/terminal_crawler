@@ -5,9 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ca36b2b-0de0-47d3-b796-130ad7cd199f" name="Changes" comment="combat not triggering">
-      <change afterPath="$PROJECT_DIR$/graphics/game_over.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enemy_lists.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/alien.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/axe_goblin.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/cyclops.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/demon.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/dragon.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/extra_devil.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/extra_dragon_rider.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/extra_gargoyle.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/extra_minotaur_decap.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/extra_scary_dragon.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/extra_treasure_troll.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/level_up.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/small_axe_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/treasure.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loot_lists.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combat_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat_loop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/game_over.txt" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/game_over.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map_movement.py" beforeDir="false" afterPath="$PROJECT_DIR$/map_movement.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +47,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2TgltxoHbPCgWOeNijEC7raF7vL" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -178,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692047547430</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="combat not triggering">
+      <created>1692141141674</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1692141141675</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
